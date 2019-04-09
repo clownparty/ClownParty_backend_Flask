@@ -4,7 +4,7 @@ from marshmallow import fields, Schema
 from . import db
 from ..app import bcrypt
 
-from .blog_post import BlogPostSchema
+from .team import UserTeamSchema
 
 class UserModel(db.Model):
     '''
@@ -91,4 +91,4 @@ class UserSchema(Schema):
     password = fields.Str(required=True)
     created_at = fields.DateTime(dump_only=True)
     modified_at = fields.DateTime(dump_only=True)
-    blogposts = fields.Nested(BlogPostSchema, many=True)
+    teams = fields.Nested(UserTeamSchema, many=True)
