@@ -9,7 +9,7 @@ class UserTeamModel(db.Model):
     Team Model
     '''
 
-    __tablename__ = 'blogposts'
+    __tablename__ = 'teams'
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
