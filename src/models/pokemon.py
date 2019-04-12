@@ -45,4 +45,4 @@ class PokemonSchema(Schema):
     pokemonnumber = fields.Int(required=True)
     pokemontype = fields.Str(required=True)
     pokemondescription = fields.Str(required=True)
-    pokemonimage = frields.Str(required=True)
+    pokemonimage = fields.Str(required=True)
