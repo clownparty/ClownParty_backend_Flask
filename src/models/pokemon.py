@@ -10,6 +10,11 @@ class PokemonModel(db.Model):
     __tablename__ = 'teams'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Columm(db.String(128), nullable=False)
+    pokemonnumber = db.Column(db.Integer, nullable = False)
+    pokemontype = db.Column(db.String(128), nullable = False)
+    pokemondescription = db.Column(db.Text, nullable = False)
+    pokemonimage = db.Column(db.String(128), nullable = False)
+
 
     def __init__(self, data):
         '''
@@ -37,3 +42,7 @@ class PokemonSchema(Schema):
     '''
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
+    pokemonnumber = fields.Int(required=True)
+    pokemontype = fields.Str(required=True)
+    pokemondescription = fields.Str(required=True)
+    pokemonimage = frields.Str(required=True)
