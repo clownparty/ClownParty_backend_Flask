@@ -7,11 +7,11 @@ team_api = Blueprint('team', __name__)
 team_schema = TeamSchema()
 
 
-@user_api.route('/', methods=['POST'])
+@user_api.route('/team/new', methods=['POST'])
 @Auth.auth_required
 def create():
     '''
-    Create endpoint for user api
+    Create endpoint for team api
     '''
 
     req_data = request.get_json()
@@ -36,57 +36,54 @@ def create():
     return custom_response({'token': token}, 201)
 
 
-@user_api.route('/trainer', methods=['DELETE'])
+@user_api.route('/team/edit', methods=['DELETE'])
 @Auth.auth_required
 def delete():
     '''
-    Delete the user model
+    Delete the team model
     if authenticated
     '''
-    user = UserModel.get_one_team(g.team.get('id'))
-    user.delete()
+    team = TeamModel.get_one_team(g.team.get('id'))
+    team.delete()
     return custom_response({'message': 'deleted'}, 204)
 
 
-@user_api.route('/', methods=['GET'])
-@Auth.auth_required
+@user_api.route('/team', methods=['GET'])
 def get_all():
     '''
-    Get all users
+    Get all teams
     '''
     teams = TeamsModel.get_all_teams()
-    ser_users = team_schema.dump(teams, many=True).data
-    return custom_response(ser_users, 200)
+    ser_teams = team_schema.dump(teams, many=True).data
+    return custom_response(ser_teams, 200)
 
 
-@user_api.route('/<int:owner_id>', methods=['GET'])
-@Auth.auth_required
-def get_team(owner_id):
+@user_api.route('/team/view/<str:teamname>', methods=['GET'])
+def get_team(teamname):
     '''
-    Get a single users team
+    Get a single team
     '''
-    team = TeamModel.get_one_team(owner_id)
+    team = TeamModel.get_one_team(teamname)
     if not team:
-        return custom_response({'error': 'user not found'}, 404)
+        return custom_response({'error': 'team not found'}, 404)
 
-    ser_user = user_schema.dump(user).data
+    ser_team = team_schema.dump(team).data
     return custom_response(ser_user, 200)
 
 
-@user_api.route('/trainer', methods=['GET'])
-@Auth.auth_required
+@user_api.route('/team/view', methods=['GET'])
 def get_team():
     '''
-    Get owners user information (me)
+    Get team information
     '''
 
-    team = TeamModel.get_one_team(g.team.get('id'))
+    team = TeamModel.get_one_team(g.team.get('teamname'))
     ser_team = team_schema.dump(team).data
     return custom_response(ser_team, 200)
 
 
 
-@user_api.route('/team', methods=['PUT'])
+@user_api.route('/team/edit', methods=['PUT'])
 @Auth.auth_required
 def update():
     '''
