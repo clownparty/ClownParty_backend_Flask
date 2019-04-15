@@ -36,31 +36,29 @@ def create():
     return custom_response({'token': token}, 201)
 
 
-@user_api.route('/trainer', methods=['DELETE'])
+@user_api.route('/team', methods=['DELETE'])
 @Auth.auth_required
 def delete():
     '''
     Delete the user model
     if authenticated
     '''
-    user = UserModel.get_one_team(g.team.get('id'))
-    user.delete()
+    team = TeamModel.get_one_team(g.team.get('id'))
+    team.delete()
     return custom_response({'message': 'deleted'}, 204)
 
 
 @user_api.route('/', methods=['GET'])
-@Auth.auth_required
 def get_all():
     '''
     Get all users
     '''
     teams = TeamsModel.get_all_teams()
-    ser_users = team_schema.dump(teams, many=True).data
-    return custom_response(ser_users, 200)
+    ser_teams = team_schema.dump(teams, many=True).data
+    return custom_response(ser_teams, 200)
 
 
-@user_api.route('/<int:owner_id>', methods=['GET'])
-@Auth.auth_required
+@user_api.route('/team/view/<str:teamname>', methods=['GET'])
 def get_team(owner_id):
     '''
     Get a single users team
@@ -69,12 +67,11 @@ def get_team(owner_id):
     if not team:
         return custom_response({'error': 'user not found'}, 404)
 
-    ser_user = user_schema.dump(user).data
+    ser_team = team_schema.dump(team).data
     return custom_response(ser_user, 200)
 
 
-@user_api.route('/trainer', methods=['GET'])
-@Auth.auth_required
+@user_api.route('/trainer/me', methods=['GET'])
 def get_team():
     '''
     Get owners user information (me)
@@ -86,7 +83,7 @@ def get_team():
 
 
 
-@user_api.route('/team', methods=['PUT'])
+@user_api.route('/trainer/me/edit', methods=['PUT'])
 @Auth.auth_required
 def update():
     '''

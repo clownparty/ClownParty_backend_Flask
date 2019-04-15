@@ -11,7 +11,8 @@ class PokemonModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Columm(db.String(128), nullable=False)
     pokemonnumber = db.Column(db.Integer, nullable = False)
-    pokemontype = db.Column(db.String(128), nullable = False)
+    pokemontype1 = db.Column(db.String(128), nullable = False)
+    pokmeontype2 = db.Column(db.String(128), nullable = True)
     pokemondescription = db.Column(db.Text, nullable = False)
     pokemonimage = db.Column(db.String(128), nullable = False)
 
@@ -33,8 +34,12 @@ class PokemonModel(db.Model):
         return PokemonModel.query.all()
 
     @staticmethod
-    def get_one_pokemon(id):
-        return PokemonModel.query.get(id)
+    def get_one_pokemon(pokemonnumber):
+        return PokemonModel.query.get(pokemonnumber)
+    
+    @staticmethod
+    def get_pokemon_by_type(pokemontype1):
+        return PokemonModel.query.filter_by(pokemontype1).all()
 
 class PokemonSchema(Schema):
     '''
@@ -43,6 +48,7 @@ class PokemonSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
     pokemonnumber = fields.Int(required=True)
-    pokemontype = fields.Str(required=True)
+    pokemontype1 = fields.Str(required=True)
+    pokemontype2 = fields.Str(required= False)
     pokemondescription = fields.Str(required=True)
     pokemonimage = fields.Str(required=True)
