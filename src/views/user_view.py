@@ -35,7 +35,7 @@ def create():
     return custom_response({'token': token}, 201)
 
 
-@user_api.route('/me', methods=['DELETE'])
+@user_api.route('/trainer', methods=['DELETE'])
 @Auth.auth_required
 def delete():
     '''
@@ -72,7 +72,7 @@ def get_user(user_id):
     return custom_response(ser_user, 200)
 
 
-@user_api.route('/me', methods=['GET'])
+@user_api.route('/trainer', methods=['GET'])
 @Auth.auth_required
 def get_me():
     '''
@@ -115,7 +115,7 @@ def login():
     return custom_response({'token': token}, 200)
 
 
-@user_api.route('/me', methods=['PUT'])
+@user_api.route('/update', methods=['PUT'])
 @Auth.auth_required
 def update():
     '''
