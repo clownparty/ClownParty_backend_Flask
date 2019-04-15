@@ -4,7 +4,7 @@ from marshmallow import fields, Schema
 from . import db
 from ..app import bcrypt
 
-from .team import UserTeamSchema
+from .team import TeamSchema
 
 class UserModel(db.Model):
     '''
