@@ -3,14 +3,14 @@ from datetime import datetime
 
 from marshmallow import fields, Schema
 
-
+db.metadata.clear()
 class UserTeamModel(db.Model):
     '''
     Team Model
     '''
 
     __tablename__ = 'teams'
-    db.metadata.clear()
+    
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
