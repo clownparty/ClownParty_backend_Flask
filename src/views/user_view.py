@@ -7,7 +7,7 @@ user_api = Blueprint('users', __name__)
 user_schema = UserSchema()
 
 
-@user_api.route('/', methods=['POST'])
+@user_api.route('/register', methods=['POST'])
 def create():
     '''
     Create endpoint for user api
@@ -35,7 +35,7 @@ def create():
     return custom_response({'token': token}, 201)
 
 
-@user_api.route('/trainer', methods=['DELETE'])
+@user_api.route('/trainers/edit', methods=['DELETE'])
 @Auth.auth_required
 def delete():
     '''
@@ -47,7 +47,7 @@ def delete():
     return custom_response({'message': 'deleted'}, 204)
 
 
-@user_api.route('/', methods=['GET'])
+@user_api.route('/trainers', methods=['GET'])
 @Auth.auth_required
 def get_all():
     '''
@@ -58,7 +58,7 @@ def get_all():
     return custom_response(ser_users, 200)
 
 
-@user_api.route('/<int:user_id>', methods=['GET'])
+@user_api.route('/trainers/<int:user_id>', methods=['GET'])
 @Auth.auth_required
 def get_user(user_id):
     '''
@@ -72,7 +72,7 @@ def get_user(user_id):
     return custom_response(ser_user, 200)
 
 
-@user_api.route('/trainer', methods=['GET'])
+@user_api.route('/trainers/me', methods=['GET'])
 @Auth.auth_required
 def get_me():
     '''
@@ -115,7 +115,7 @@ def login():
     return custom_response({'token': token}, 200)
 
 
-@user_api.route('/update', methods=['PUT'])
+@user_api.route('/trainers/me/edit', methods=['PUT'])
 @Auth.auth_required
 def update():
     '''
