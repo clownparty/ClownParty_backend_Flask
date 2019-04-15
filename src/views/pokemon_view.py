@@ -4,7 +4,7 @@ from ..models.pokemon import PokemonModel, PokemonSchema
 pokemon_api = Blueprint('pokemon', __name__)
 pokemon_schema = PokemonSchema()
 
-@user_api.route('/', methods=['GET'])
+@user_api.route('/pokemon', methods=['GET'])
 def get_all():
     '''
     Get all pokemon
@@ -13,10 +13,10 @@ def get_all():
     ser_pokemon = pokemon_schema.dump(pokemons, many=True).data
     return custom_response(ser_pokemon, 200)
 
-@user_api.route('/<int:pokemonnumber>', methods=['GET'])
+@user_api.route('/pokemon', methods=['GET'])
 def get_pokemon(pokemonnumber):
     '''
-    Get a single users team
+    Get a single pokemon
     '''
     pokemon = PokemonModel.get_one_pokemon(pokemonnumber)
     if not pokemon:
