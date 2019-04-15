@@ -3,8 +3,8 @@ from datetime import datetime
 
 from marshmallow import fields, Schema
 
-db.metadata.clear()
-class UserTeamModel(db.Model):
+
+class TeamModel(db.Model):
     '''
     Team Model
     '''
