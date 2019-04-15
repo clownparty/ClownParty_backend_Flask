@@ -9,7 +9,7 @@ class PokemonModel(db.Model):
     '''
     __tablename__ = 'teams'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Columm(db.String(128), nullable=False)
+    name = db.Column(db.String(128), nullable=False)
     pokemonnumber = db.Column(db.Integer, nullable = False)
     pokemontype1 = db.Column(db.String(128), nullable = False)
     pokmeontype2 = db.Column(db.String(128), nullable = True)
