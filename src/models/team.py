@@ -78,9 +78,9 @@ class TeamModel(db.Model):
         return UserTeamModel.query.get(id)
 
 
-class UserTeamSchema(Schema):
+class TeamSchema(Schema):
   """
-  UserTeam Schema
+  Team Schema
   """
   id = fields.Int(dump_only=True)
   title = fields.Str(required=True)
