@@ -65,7 +65,7 @@ def get_team(owner_id):
     '''
     Get a single users team
     '''
-    team = OwnerModel.get_one_team(owner_id)
+    team = TeamModel.get_one_team(owner_id)
     if not team:
         return custom_response({'error': 'user not found'}, 404)
 
