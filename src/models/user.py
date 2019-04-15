@@ -93,4 +93,4 @@ class UserSchema(Schema):
     password = fields.Str(required=True)
     bio = fields.Str(required=True)
     fav_poke = fields.Int(required=True)
-    teams = fields.Nested(UserTeamSchema, many=True)
+    teams = fields.Nested(TeamSchema, many=True)
