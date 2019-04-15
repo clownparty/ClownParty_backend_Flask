@@ -10,6 +10,7 @@ class UserTeamModel(db.Model):
     '''
 
     __tablename__ = 'teams'
+    db.metadata.clear()
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
