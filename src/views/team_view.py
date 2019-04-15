@@ -7,7 +7,7 @@ team_api = Blueprint('team', __name__)
 team_schema = TeamSchema()
 
 
-@user_api.route('/team/new', methods=['POST'])
+@team_api.route('/team/new', methods=['POST'])
 @Auth.auth_required
 def create():
     '''
@@ -36,7 +36,7 @@ def create():
     return custom_response({'token': token}, 201)
 
 
-@user_api.route('/team/edit', methods=['DELETE'])
+@team_api.route('/team/edit', methods=['DELETE'])
 @Auth.auth_required
 def delete():
     '''
@@ -48,7 +48,7 @@ def delete():
     return custom_response({'message': 'deleted'}, 204)
 
 
-@user_api.route('/team', methods=['GET'])
+@team_api.route('/team', methods=['GET'])
 def get_all():
     '''
     Get all teams
@@ -58,7 +58,7 @@ def get_all():
     return custom_response(ser_teams, 200)
 
 
-@user_api.route('/team/view/<str:teamname>', methods=['GET'])
+@team_api.route('/team/view/<str:teamname>', methods=['GET'])
 def get_team(teamname):
     '''
     Get a single team
@@ -71,7 +71,7 @@ def get_team(teamname):
     return custom_response(ser_user, 200)
 
 
-@user_api.route('/team/view', methods=['GET'])
+@team_api.route('/team/view', methods=['GET'])
 def get_team():
     '''
     Get team information
@@ -83,7 +83,7 @@ def get_team():
 
 
 
-@user_api.route('/team/edit', methods=['PUT'])
+@team_api.route('/team/edit', methods=['PUT'])
 @Auth.auth_required
 def update():
     '''
