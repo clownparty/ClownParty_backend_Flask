@@ -9,7 +9,7 @@ class UserTeamModel(db.Model):
     Team Model
     '''
 
-    __tablename__ = 'teams'
+    __tablename__ = 'team'
     
 
     id = db.Column(db.Integer, primary_key=True)
