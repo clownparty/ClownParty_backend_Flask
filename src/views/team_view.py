@@ -58,7 +58,7 @@ def get_all():
     return custom_response(ser_teams, 200)
 
 
-@team_api.route('/team/view/<str:teamname>', methods=['GET'])
+@team_api.route('/team/view/<teamname>', methods=['GET'])
 def get_team(teamname):
     '''
     Get a single team
