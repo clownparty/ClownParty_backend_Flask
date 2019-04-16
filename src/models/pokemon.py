@@ -28,6 +28,13 @@ class PokemonModel(db.Model):
 
     def __repr__(self):
         return f'<id {self.id}>'
+    
+    def save(self):
+        '''
+        saves new pokemon to database
+        '''
+        db.session.add(self)
+        db.session.commit()
 
     @staticmethod
     def get_all_pokemon():
@@ -36,6 +43,9 @@ class PokemonModel(db.Model):
     @staticmethod
     def get_one_pokemon(pokemonnumber):
         return PokemonModel.query.get(pokemonnumber)
+    @staticmethod
+    def get_pokemon_by_name(name):
+        return PokemonModel.query.get(name)
     
     @staticmethod
     def get_pokemon_by_type(pokemontype1):
