@@ -72,7 +72,7 @@ def get_team(teamname):
 
 
 @team_api.route('/team/view', methods=['GET'])
-def get_team():
+def get_team_info():
     '''
     Get team information
     '''
