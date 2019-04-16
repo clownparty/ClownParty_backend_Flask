@@ -71,11 +71,11 @@ class TeamModel(db.Model):
 
     @staticmethod
     def get_all_teams():
-        return UserTeamModel.query.all()
+        return TeamModel.query.all()
 
     @staticmethod
     def get_one_team(id):
-        return UserTeamModel.query.get(id)
+        return TeamModel.query.get(id)
 
 
 class TeamSchema(Schema):
