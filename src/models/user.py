@@ -43,7 +43,7 @@ class UserModel(db.Model):
 
 
     def __repr__(self):
-        return f'<id {self.id}>'
+        return '<id {self.id}>'
 
     def _generate_hash(self, password):
         return bcrypt.generate_password_hash(password, rounds=10).decode('utf-8')
