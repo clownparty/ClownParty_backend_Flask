@@ -11,8 +11,8 @@ class PokemonModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     pokemonnumber = db.Column(db.Integer, nullable = False)
-    pokemontype1 = db.Column(db.String(128), nullable = False)
-    pokemontype2 = db.Column(db.String(128), nullable = True)
+    # pokemontype1 = db.Column(db.String(128), nullable = False)
+    # pokemontype2 = db.Column(db.String(128), nullable = True)
     pokemondescription = db.Column(db.Text, nullable = False)
     pokemonimage = db.Column(db.String(128), nullable = False)
 
@@ -26,8 +26,8 @@ class PokemonModel(db.Model):
         
         self.name = data.get('name')
         self.pokemonnumber = data.get('pokemonnumber')
-        self.pokemontype1 = data.get('pokemontype1')
-        self.pokemontype2 = data.get('pokemontype2')
+        # self.pokemontype1 = data.get('pokemontype1')
+        # self.pokemontype2 = data.get('pokemontype2')
         self.pokemondescription = data.get('pokemondescription')
         self.pokemonimage = data.get('pokemonimage')
 
@@ -63,7 +63,7 @@ class PokemonSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
     pokemonnumber = fields.Int(required=True)
-    pokemontype1 = fields.Str(required=True)
-    pokemontype2 = fields.Str(required= False)
+    # pokemontype1 = fields.Str(required=True)
+    # pokemontype2 = fields.Str(required= False)
     pokemondescription = fields.Str(required=True)
     pokemonimage = fields.Str(required=True)

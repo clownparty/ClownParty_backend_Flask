@@ -21,7 +21,7 @@ class UserModel(db.Model):
     name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
-    bio = db.Column(db.String(128), nullable=False)
+    # bio = db.Column(db.String(128), nullable=False)
     fav_poke = db.Column(db.Integer, nullable=False)
     # foreign key
 
@@ -36,7 +36,7 @@ class UserModel(db.Model):
         self.name = data.get('name')
         self.email = data.get('email')
         self.password = self._generate_hash(data.get('password'))
-        self.bio = data.get('bio')
+        # self.bio = data.get('bio')
         self.fav_poke = data.get('fav_poke')
 
 
@@ -89,5 +89,5 @@ class UserSchema(Schema):
     name = fields.Str(required=True)
     email = fields.Email(required=True)
     password = fields.Str(required=True)
-    bio = fields.Str(required=True)
+    # bio = fields.Str(required=True)
     fav_poke = fields.Int(required=True)
