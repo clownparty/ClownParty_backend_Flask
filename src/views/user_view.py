@@ -112,7 +112,7 @@ def login():
 
     token = Auth.generate_token(ser_data.get('id'))
 
-    return custom_response({'token': token}, 200)
+    return custom_response({'token': token, 'user_id': ser_data.get('id')}, 200)
 
 
 @user_api.route('/trainers/me/edit', methods=['PUT'])
