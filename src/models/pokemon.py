@@ -7,12 +7,12 @@ class PokemonModel(db.Model):
     '''
     Pokemon Model
     '''
-    __tablename__ = 'teams'
+    __tablename__ = 'pokemon'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     pokemonnumber = db.Column(db.Integer, nullable = False)
     pokemontype1 = db.Column(db.String(128), nullable = False)
-    pokmeontype2 = db.Column(db.String(128), nullable = True)
+    pokemontype2 = db.Column(db.String(128), nullable = True)
     pokemondescription = db.Column(db.Text, nullable = False)
     pokemonimage = db.Column(db.String(128), nullable = False)
 
@@ -25,6 +25,11 @@ class PokemonModel(db.Model):
         '''
         
         self.name = data.get('name')
+        self.pokemonnumber = data.get('pokemonnumber')
+        self.pokemontype1 = data.get('pokemontype1')
+        self.pokemontype2 = data.get('pokemontype2')
+        self.pokemondescription = data.get('pokemondescription')
+        self.pokemonimage = data.get('pokemonimage')
 
     def __repr__(self):
         return f'<id {self.id}>'
