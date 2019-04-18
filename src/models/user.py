@@ -22,7 +22,6 @@ class UserModel(db.Model):
     email = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     bio = db.Column(db.String(128), nullable=False)
-    teams = db.Column(db.Integer, nullable=False)
     fav_poke = db.Column(db.Integer, nullable=False)
     # foreign key
 
@@ -38,8 +37,7 @@ class UserModel(db.Model):
         self.email = data.get('email')
         self.password = self._generate_hash(data.get('password'))
         self.bio = data.get('bio')
-        self.teams= data.get('teams')
-        self.fav_poke = data.get('fav_pokemon')
+        self.fav_poke = data.get('fav_poke')
 
 
     def __repr__(self):
@@ -93,4 +91,3 @@ class UserSchema(Schema):
     password = fields.Str(required=True)
     bio = fields.Str(required=True)
     fav_poke = fields.Int(required=True)
-    teams = fields.Nested(TeamSchema, many=True)
