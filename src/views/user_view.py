@@ -105,8 +105,10 @@ def login():
         return custom_response({'error': 'invalid credentials'})
 
     ser_data = user_schema.dump(user).data
+    print(ser_data)
 
     token = Auth.generate_token(ser_data.get('id'))
+    print(token)
 
     return custom_response({'token': token, 'user_id': ser_data.get('id')}, 200)
 
