@@ -12,7 +12,6 @@ def create():
     '''
     Create endpoint for user api
     '''
-
     req_data = request.get_json()
     data, error = user_schema.load(req_data)
 
@@ -22,13 +21,18 @@ def create():
     # check if user already exists in db
     user_in_db = UserModel.get_user_by_email(data.get('email'))
     if user_in_db:
-        message = {'error': 'User already exists, please supply another email address'}
+        message = {'error': 'User already exists, please supply' +
+                            'another email address'}
         return custom_response(message, 400)
 
     user = UserModel(data)
     user.save()
 
-    return custom_response({"Status": "success"}, 201)
+    ser_data = user_schema.dump(user).data
+
+    token = Auth.generate_token(ser_data['id'])
+
+    return custom_response({'token': token}, 201)
 
 
 @user_api.route('/trainers/edit', methods=['DELETE'])
@@ -94,23 +98,21 @@ def login():
         return custom_response(error, 400)
 
     if not data.get('email') or not data.get('password'):
-        return custom_response({'error': 'email and password required to login'})
+        return custom_response({'error': 'email and password ' +
+                                         ' required to login'}, 404)
 
     user = UserModel.get_user_by_email(data.get('email'))
-
     if not user:
         return custom_response({'error': 'invalid credentials'}, 400)
 
     if not user.check_hash(data.get('password')):
-        return custom_response({'error': 'invalid credentials'})
+        return custom_response({'error': 'invalid credentials'}, 400)
 
     ser_data = user_schema.dump(user).data
-    print(ser_data)
 
     token = Auth.generate_token(ser_data.get('id'))
-    print(token)
 
-    return custom_response({'token': token, 'user_id': ser_data.get('id')}, 200)
+    return custom_response({'token': token}, 200)
 
 
 @user_api.route('/trainers/me/edit', methods=['PUT'])
