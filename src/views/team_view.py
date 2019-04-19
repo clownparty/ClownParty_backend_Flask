@@ -53,7 +53,7 @@ def get_all():
     '''
     Get all teams
     '''
-    teams = TeamsModel.get_all_teams()
+    teams = TeamModel.get_all_teams()
     ser_teams = team_schema.dump(teams, many=True).data
     return custom_response(ser_teams, 200)
 
