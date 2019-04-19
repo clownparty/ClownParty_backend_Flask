@@ -28,11 +28,7 @@ def create():
     user = UserModel(data)
     user.save()
 
-    ser_data = user_schema.dump(user).data
-
-    token = Auth.generate_token(ser_data.get('id'))
-
-    return custom_response({'token': token}, 201)
+    return custom_response({"Status": "success"}, 201)
 
 
 @user_api.route('/trainers/edit', methods=['DELETE'])
