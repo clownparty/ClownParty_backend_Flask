@@ -32,7 +32,7 @@ def create():
 
     token = Auth.generate_token(ser_data['id'])
 
-    return custom_response({'token': token}, 201)
+    return custom_response({'usercreated': "created user"}, 201)
 
 
 @user_api.route('/trainers/edit', methods=['DELETE'])
