@@ -20,7 +20,7 @@ def create():
     if error:
         return custom_response(error, 400)
 
-    # check if user already exists in db
+    # check if team already exists in db
     team_in_db = TeamModel.get_one_team(data.get('id'))
     if team_in_db:
         message = {'error': 'Team already exists, please supply another team id'}
