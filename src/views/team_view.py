@@ -87,8 +87,8 @@ def get_team_info():
 @Auth.auth_required
 def update():
     '''
-    Allows owner of profile (me)
-    to update the user information
+    Allows owner of team (me)
+    to update the team information
     '''
 
     req_data = request.get_json()
