@@ -28,8 +28,15 @@ def get_pokemon(number):
     new_pokemon_image = new_pokemon.sprites.front_default
 
 
-    return f'{new_pokemon_name},\n{new_pokemon_description},\n{new_pokemon_image},\n{new_pokemon_number}'
-
+    # return f'{new_pokemon_name},\n{new_pokemon_description},\n{new_pokemon_image},\n{new_pokemon_number}'
+    data = {
+        "name": new_pokemon_name,
+        "description": new_pokemon_description,
+        "image": new_pokemon_image,
+        "number": new_pokemon_number,
+    }
+    json_pokemon_info = json.dumps(data)
+    return json_pokemon_info
 @pokemon_api.route('/create', methods=['POST'])
 def create_pokemon():
    
@@ -49,8 +56,9 @@ def create_pokemon():
 
 @pokemon_api.route('/<string:name>', methods=['GET'])
 def pokemon_info(name):
-    new_pokemon = pb.pokemon(name)
-    new_pokemon_species = pb.pokemon_species(name)
+    new_name = name.lower()
+    new_pokemon = pb.pokemon(new_name)
+    new_pokemon_species = pb.pokemon_species(new_name)
     pokemon_fte = new_pokemon_species.flavor_text_entries
     for fte in pokemon_fte:
             if fte.language.name =="en" and fte.version.name == "alpha-sapphire" or fte.language.name == "en" and fte.version.name == "ultra-sun":
@@ -61,7 +69,16 @@ def pokemon_info(name):
     new_pokemon_image = new_pokemon.sprites.front_default
 
 
-    return f'{new_pokemon_name},\n{new_pokemon_description},\n{new_pokemon_image},\n{new_pokemon_number}'
+    # return f'{new_pokemon_name},\n{new_pokemon_description},\n{new_pokemon_image},\n{new_pokemon_number}'
+    data = {
+        "name": new_pokemon_name,
+        "description": new_pokemon_description,
+        "image": new_pokemon_image,
+        "number": new_pokemon_number,
+    }
+    json_pokemon_info = json.dumps(data)
+    return json_pokemon_info
+
 
 
 def custom_response(res, status_code):
