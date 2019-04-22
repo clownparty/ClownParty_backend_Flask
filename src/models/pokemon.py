@@ -14,7 +14,7 @@ class PokemonModel(db.Model):
     # pokemontype1 = db.Column(db.String(128), nullable = False)
     # pokemontype2 = db.Column(db.String(128), nullable = True)
     pokemondescription = db.Column(db.Text, nullable = False)
-    pokemonimage = db.Column(db.String(128), nullable = False)
+    pokemonimage = db.Column(db.String(128), nullable = True)
 
 
     def __init__(self, data):
@@ -40,6 +40,17 @@ class PokemonModel(db.Model):
         '''
         db.session.add(self)
         db.session.commit()
+
+    def to_dict(self):
+        myDict = {
+            'id': self.id,
+            'name': self.name,
+            'pokemonnumber': self.pokemonnumber,
+            'pokemondescription': self.pokemondescription,
+            'pokemonimage': self.pokemonimage
+        }
+
+        return myDict
 
     @staticmethod
     def get_all_pokemon():
