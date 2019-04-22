@@ -86,8 +86,8 @@ class UserSchema(Schema):
     '''
 
     id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
+    name = fields.Str(required=False)
     email = fields.Email(required=True)
     password = fields.Str(required=True)
     # bio = fields.Str(required=True)
-    fav_poke = fields.Int(required=True)
+    fav_poke = fields.Int(required=False)
