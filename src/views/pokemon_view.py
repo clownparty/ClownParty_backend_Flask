@@ -27,7 +27,7 @@ def get_pokemon_name(name):
 def get_all_pokemon():
     pokedex = PokemonModel.get_all_pokemon()
 
-    pokedex_info = pokemon_schema.dump(pokedex).data
+    pokedex_info = pokemon_schema.dump(pokedex, many=True).data
     return custom_response(pokedex_info, 200)
 
 # Create route for gettng by name
