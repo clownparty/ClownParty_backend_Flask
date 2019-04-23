@@ -83,7 +83,7 @@ class TeamSchema(Schema):
   Team Schema
   """
   id = fields.Int(dump_only=True)
-  title = fields.Str(required=True)
+  teamname = fields.Str(required=True)
   slot1 = fields.Int(required=True)
   slot2 = fields.Int(required=True)
   slot3 = fields.Int(required=True)
