@@ -91,14 +91,15 @@ def login():
     if the user credentials are verified
     '''
     req_data = request.get_json()
+    print(req_data)
 
     data, error = user_schema.load(req_data, partial=True)
 
     if error:
         return custom_response(error, 400)
 
-    # if not data.get('email') or not data.get('password'):
-    #     return custom_response({'error': 'email and password ' + ' required to login'}, 404)
+    if not data.get('email') or not data.get('password'):
+        return custom_response({'error': 'email and password ' + ' required to login'}, 404)
 
     user = UserModel.get_user_by_email(data.get('email'))
     if not user:
