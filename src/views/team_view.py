@@ -7,8 +7,8 @@ team_api = Blueprint('team', __name__)
 team_schema = TeamSchema()
 
 
-@team_api.route('/team/new', methods=['POST'])
-@Auth.auth_required
+@team_api.route('/new', methods=['POST'])
+# @Auth.auth_required
 def create():
     '''
     Create endpoint for team api
@@ -31,9 +31,8 @@ def create():
 
     ser_data = team_schema.dump(team).data
 
-    token = Auth.generate_token(ser_data.get('id'))
 
-    return custom_response({'token': token}, 201)
+    return custom_response(ser_data, 201)
 
 
 @team_api.route('/team/edit', methods=['DELETE'])
