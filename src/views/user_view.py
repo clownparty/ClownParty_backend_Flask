@@ -117,7 +117,7 @@ def login():
 
 
 @user_api.route('/trainers/me/edit', methods=['PUT'])
-@Auth.auth_required
+# @Auth.auth_required
 def update():
     
     # Allows owner of profile (me)
