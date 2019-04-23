@@ -15,8 +15,6 @@ def get_pokemon(ident):
 @pokemon_api.route('/name/<string:name>')
 def get_pokemon_name(name):
     
-    print(data, "---------------------------------")
-
     pokemon = PokemonModel.get_pokemon_by_name(name)
     if not pokemon:
         return custom_response({'error': 'no pokemon found'}, 404)
