@@ -16,8 +16,10 @@ def get_pokemon(ident):
 def get_pokemon_name(name):
     pokemon_data = request.get_json()
     data =pokemon_schema.load(pokemon_data)
+    print(data, "---------------------------------")
 
     pokemon = PokemonModel.get_pokemon_by_name(name)
+    print(pokemon, "-----------------------------------------------------")
     if not pokemon:
         return custom_response({'error': 'no pokemon found'}, 404)
     poke_info = pokemon_schema.dump(pokemon).data
