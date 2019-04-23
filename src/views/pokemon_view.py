@@ -6,14 +6,14 @@ import pokebase as pb
 pokemon_api = Blueprint('pokemon', __name__)
 pokemon_schema = PokemonSchema()
 
-@pokemon_api.route('/<int:ident>')
+@pokemon_api.route('/number/<int:ident>')
 def get_pokemon(ident):
     myStuff = PokemonModel.get_one_pokemon(ident)
 
     return json.dumps(myStuff.to_dict())
 
-@pokemon_api.route('/<string:name>')
-def get_pokemon(name):
+@pokemon_api.route('/name/<string:name>')
+def get_pokemon_name(name):
     myStuff = PokemonModel.get_one_pokemon_by_name(name)
 
     return json.dumps(myStuff.to_dict())
