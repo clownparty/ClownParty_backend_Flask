@@ -14,9 +14,15 @@ def get_pokemon(ident):
 
 @pokemon_api.route('/name/<string:name>')
 def get_pokemon_name(name):
-    myStuff = PokemonModel.get_one_pokemon_by_name(name)
+    pokemon_data = request.get_json()
+    data =pokemon_schema.load(pokemon_data)
 
-    return json.dumps(myStuff.to_dict())
+    pokemon = PokemonModel.get_one_pokemon_by_name(name)
+    if not pokemon:
+        return custom_response({'error': 'no pokemon found'}, 404)
+    poke_info = pokemon_schema.dump(pokemon).data
+
+    return custom_response(poke_info, 200)
 
 # Create route for gettng by name
 
