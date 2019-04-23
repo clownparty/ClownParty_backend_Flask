@@ -7,7 +7,7 @@ team_api = Blueprint('team', __name__)
 team_schema = TeamSchema()
 
 
-@team_api.route('/new', methods=['POST'])
+@team_api.route('/team/new', methods=['POST'])
 # @Auth.auth_required
 def create():
     '''
