@@ -44,7 +44,7 @@ def delete():
     Delete the team model
     if authenticated
     '''
-    team = TeamModel.get_one_team(g.team.get('id'))
+    team = TeamModel.get_one_team(g.team.get("teamname"))
     team.delete()
     return custom_response({'message': 'deleted'}, 204)
 
