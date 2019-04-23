@@ -15,7 +15,9 @@ def create():
     '''
 
     req_data = request.get_json()
+    print(req_data)
     data, error = team_schema.load(req_data)
+    print(data)
 
     if error:
         return custom_response(error, 400)

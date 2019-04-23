@@ -75,7 +75,7 @@ class TeamModel(db.Model):
 
     @staticmethod
     def get_one_team(id):
-        return TeamModel.query.get(id)
+        return TeamModel.query.filter_by(id=id).first()
 
 
 class TeamSchema(Schema):
