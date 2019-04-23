@@ -32,7 +32,7 @@ def create():
 
     token = Auth.generate_token(ser_data['id'])
 
-    return custom_response({'token': token}, 201)
+    return custom_response({'usercreated': "created user", "token": token}, 201)
 
 
 @user_api.route('/trainers/edit', methods=['DELETE'])
@@ -98,8 +98,8 @@ def login():
         return custom_response(error, 400)
 
     if not data.get('email') or not data.get('password'):
-        return custom_response({'error': 'email and password ' +
-                                         ' required to login'}, 404)
+
+        return custom_response({'error': 'email and password ' + ' required to login'}, 404)
 
     user = UserModel.get_user_by_email(data.get('email'))
     if not user:
@@ -112,16 +112,16 @@ def login():
 
     token = Auth.generate_token(ser_data.get('id'))
 
-    return custom_response({'token': token}, 200)
+    return custom_response({'login': 'Successfully logged in', "token": token}, 200)
 
 
 @user_api.route('/trainers/me/edit', methods=['PUT'])
 @Auth.auth_required
 def update():
-    '''
-    Allows owner of profile (me)
-    to update the user information
-    '''
+    
+    # Allows owner of profile (me)
+    # to update the user information
+    
 
     req_data = request.get_json()
     data, error = user_schema.load(req_data, partial=True)
