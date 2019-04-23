@@ -8,9 +8,10 @@ pokemon_schema = PokemonSchema()
 
 @pokemon_api.route('/number/<int:ident>')
 def get_pokemon(ident):
-    myStuff = PokemonModel.get_one_pokemon(ident)
+    pokemon = PokemonModel.get_one_pokemon(ident)
+    poke_info = pokemon_schema.dump(pokemon).data
 
-    return json.dumps(myStuff.to_dict())
+    return custom_response(poke_info, 200)
 
 @pokemon_api.route('/name/<string:name>')
 def get_pokemon_name(name):
