@@ -23,24 +23,31 @@ def get_pokemon_name(name):
 
     return custom_response(poke_info, 200)
 
+@pokemon_api.route('/all', methods=['GET'])
+def get_all_pokemon():
+    pokedex = PokemonModel.get_all_pokemon()
+
+    pokedex_info = pokemon_schema.dump(pokedex).data
+    return custom_response(pokedex_info, 200)
+
 # Create route for gettng by name
 
-@pokemon_api.route('/create', methods=['POST'])
-def create_pokemon():
+# @pokemon_api.route('/create', methods=['POST'])
+# def create_pokemon():
 
-    if request.headers.get('populate_pokemon_token') == os.getenv('POPULATE_TOKEN'):
-        req_data = request.get_json()
-        data, error = pokemon_schema.load(req_data)
-        if error:
-            return custom_response(error, 400)
+#     if request.headers.get('populate_pokemon_token') == os.getenv('POPULATE_TOKEN'):
+#         req_data = request.get_json()
+#         data, error = pokemon_schema.load(req_data)
+#         if error:
+#             return custom_response(error, 400)
 
-        pokemon = PokemonModel(data)
-        pokemon.save()
+#         pokemon = PokemonModel(data)
+#         pokemon.save()
 
-        ser_data = pokemon_schema.dump(pokemon).data
-        return custom_response(ser_data, 201)
-    else:
-        return 'Get outta \'ere'
+#         ser_data = pokemon_schema.dump(pokemon).data
+#         return custom_response(ser_data, 201)
+#     else:
+#         return 'Get outta \'ere'
 
 # @pokemon_api.route('/<string:name>', methods=['GET'])
 # def pokemon_info(name):
