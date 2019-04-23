@@ -58,7 +58,7 @@ class PokemonModel(db.Model):
 
     @staticmethod
     def get_one_pokemon(pokemonnumber):
-        return PokemonModel.query.filter_by(pokemonnumber)
+        return PokemonModel.query.filter_by(pokemonnumber=pokemonnumber).first()
     @staticmethod
     def get_pokemon_by_name(name):
         return PokemonModel.query.filter_by(name=name).first()
