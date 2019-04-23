@@ -37,7 +37,7 @@ def create():
     return custom_response(ser_data, 201)
 
 
-@team_api.route('/team/edit/<string:teamname', methods=['DELETE'])
+@team_api.route('/team/edit/<string:teamname>', methods=['DELETE'])
 # @Auth.auth_required
 def delete():
     '''
