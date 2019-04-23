@@ -63,7 +63,7 @@ class UserModel(db.Model):
         '''takes in data to modify model'''
         for key, item in data.items():
             if key == 'password':
-                self.password = self._generate_hash(value)
+                self.password = self._generate_hash(item)
             setattr(self, key, item)
         db.session.commit()
 
