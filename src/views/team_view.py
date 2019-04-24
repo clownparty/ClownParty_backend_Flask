@@ -37,14 +37,14 @@ def create():
     return custom_response(ser_data, 201)
 
 
-@team_api.route('/team/edit/<string:teamname>', methods=['DELETE'])
+@team_api.route('/team/edit/<int:id>', methods=['DELETE'])
 # @Auth.auth_required
-def delete():
+def delete(id):
     '''
     Delete the team model
     if authenticated
     '''
-    team = TeamModel.get_one_team(g.team.get("teamname"))
+    team = TeamModel.get_one_team(g.team.get("id"))
     team.delete()
     return custom_response({'message': 'deleted'}, 204)
 
