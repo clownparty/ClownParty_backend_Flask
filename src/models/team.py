@@ -76,6 +76,10 @@ class TeamModel(db.Model):
     @staticmethod
     def get_one_team(teamname):
         return TeamModel.query.filter_by(id=id).first()
+    
+    @staticmethod
+    def get_teams_by_owner_id(owner_id):
+        return TeamModel.query.filter_by(owner_id=owner_id).all()
 
 
 class TeamSchema(Schema):
