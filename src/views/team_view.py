@@ -8,7 +8,7 @@ team_schema = TeamSchema()
 
 
 @team_api.route('/team/new', methods=['POST'])
-# @Auth.auth_required
+@Auth.auth_required
 def create():
     '''
     Create endpoint for team api
@@ -38,7 +38,7 @@ def create():
 
 
 @team_api.route('/team/edit/<int:id>', methods=['DELETE'])
-# @Auth.auth_required
+@Auth.auth_required
 def delete(id):
     '''
     Delete the team model
