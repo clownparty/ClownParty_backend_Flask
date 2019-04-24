@@ -59,12 +59,12 @@ def get_all():
     return custom_response(ser_teams, 200)
 
 
-@team_api.route('/team/view/<teamname>', methods=['GET'])
-def get_team(teamname):
+@team_api.route('/team/view/<int:id>', methods=['GET'])
+def get_team(id):
     '''
     Get a single team
     '''
-    team = TeamModel.get_one_team(teamname)
+    team = TeamModel.get_one_team(id)
     if not team:
         return custom_response({'error': 'team not found'}, 404)
 
@@ -78,7 +78,7 @@ def get_team_info():
     Get team information
     '''
 
-    team = TeamModel.get_one_team(g.team.get('teamname'))
+    team = TeamModel.get_one_team(g.team.get('id'))
     ser_team = team_schema.dump(team).data
     return custom_response(ser_team, 200)
 
