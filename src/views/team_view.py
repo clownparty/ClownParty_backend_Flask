@@ -103,7 +103,7 @@ def update():
     if error:
         return custom_response(error, 400)
 
-    team = TeamModel.get_one_team(g.team.get('id'))
+    team = TeamModel.get_one_team(req_data.get('id'))
     team.update(data)
     ser_team = team_schema.dump(team).data
     return custom_response(ser_team, 200)
