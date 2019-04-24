@@ -63,7 +63,7 @@ class TeamModel(db.Model):
         '''
         updates model after setting attributes
         and persists them to database
-        '''
+        '''`
         for key, item in data.items():
             setattr(self, key, item)
         self.modified_at = datetime.utcnow()
