@@ -62,7 +62,7 @@ def get_all():
 def get_teams_by_owner(id):
     user_teams = TeamModel.get_teams_by_owner_id(id)
     ser_user_teams = team_schema.dump(user_teams, many=True).data
-    return custom_respons(ser_user_teams, 200)
+    return custom_response(ser_user_teams, 200)
 
 
 @team_api.route('/team/view/<int:id>', methods=['GET'])
